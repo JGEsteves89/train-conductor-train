@@ -3,12 +3,12 @@
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="/modern-highspeed-train-tracks-orange-white-design-sleek-fast-transportation.png"
-          width="100"
+        alt="Train banner"
+        class="shrink mt-1 hidden-sm-and-down"
+        contain
+        min-width="100"
+        :src="trainImage"
+        width="100"
         />
       </div>
 
@@ -35,5 +35,10 @@ export default {
   data: () => ({
     //
   }),
+  computed: {
+    trainImage() {
+      return process.env.BASE_URL + "images/train.png";
+    },
+  },
 };
 </script>
