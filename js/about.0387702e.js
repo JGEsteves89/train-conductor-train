@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunktrain_conductor_train"]=self["webpackChunktrain_conductor_train"]||[]).push([[594],{1794:(t,n,a)=>{a.r(n),a.d(n,{default:()=>e});var r=function(){var t=this;t._self._c;return t._m(0)},s=[function(){var t=this,n=t._self._c;return n("div",{staticClass:"about"},[n("h1",[t._v("This is an about page")])])}],u=a(1656),c={},i=(0,u.A)(c,r,s,!1,null,null,null);const e=i.exports}}]);
+//# sourceMappingURL=about.0387702e.js.map
