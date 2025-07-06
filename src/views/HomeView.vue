@@ -8,10 +8,11 @@
           class="mb-4"
           @click="$router.push('/test1')"
         >
-          Test 1
+          ATTENTION TESTS: Group Bourdon paper test
         </v-btn>
 
         <v-btn
+          v-show="false"
           block
           color="primary"
           class="mb-4"
@@ -21,6 +22,7 @@
         </v-btn>
 
         <v-btn
+          v-show="false"
           block
           color="primary"
           @click="$router.push('/test3')"

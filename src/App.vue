@@ -4,7 +4,7 @@
       <div class="d-flex align-center">
         <v-img
         alt="Train banner"
-        class="shrink mt-1 hidden-sm-and-down"
+        class="shrink mt-1"
         contain
         min-width="100"
         :src="trainImage"
