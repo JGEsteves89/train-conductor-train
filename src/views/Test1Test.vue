@@ -201,6 +201,7 @@ export default {
 		if (this.testIndex < 0 || this.testIndex >= TESTS.length) {
 			this.goToTest(0);
 		}
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	},
 	methods: {
 		onTestFinished() {
