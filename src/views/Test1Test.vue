@@ -199,7 +199,7 @@ export default {
 	},
 	mounted() {
 		if (this.testIndex < 0 || this.testIndex >= TESTS.length) {
-			this.goToTest(0);
+			$router.push('/test1/')
 		}
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	},
@@ -211,7 +211,7 @@ export default {
 		},
 		goToTest(index) {
 			// navigate to /test1/start/:index
-			this.$router.replace({ name: 'Test1Start', params: { index: index.toString() } });
+			this.$router.replace({ name: 'Test1Test', params: { index: index.toString() } });
 		}
 	}
 };
