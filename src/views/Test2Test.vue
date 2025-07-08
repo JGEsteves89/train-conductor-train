@@ -35,7 +35,7 @@ import TeaOccSymbolSearch from '@/components/TeaOccSymbolSearch.vue';
 
 const TESTS = [
 	{
-		soundPath: "/sounds/LowHighTones1.wav", solution: '34 ou 35 ou 36, não sei bem :)', what: "low tones", searchLetters: ['K'],
+		soundPath: "sounds/LowHighTones1.wav", solution: '34 ou 35 ou 36, não sei bem :)', what: "low tones", searchLetters: ['K'],
 		lines: [
 			'⚪ ⚪ 🔳 J 🔵 K ⚪ 🔶 T',
 			'⬛ J 🔶 A 🔺 H 🔳 T 🔻',
@@ -55,7 +55,7 @@ const TESTS = [
 		],
 	},
 	{
-		soundPath: "/sounds/LowHighTones2.mp3", solution: '26', what: "low tones",
+		soundPath: "sounds/LowHighTones2.mp3", solution: '26', what: "low tones",
 		searchLetters: ['K'],
 		lines: [
 			'🔻 T Q 🔶 M K 🔳 H',
@@ -76,7 +76,7 @@ const TESTS = [
 		],
 	},
 	{
-		soundPath: "/sounds/LowHighTones1.wav", solution: '34', what: "high tones", searchLetters: ['K'],
+		soundPath: "sounds/LowHighTones1.wav", solution: '34', what: "high tones", searchLetters: ['K'],
 		lines: [
 			'🔳 H 🔻 K A 🔶 G 🔺',
 			'K 🔵 Q U ⬛ 🔶 T K',
@@ -96,7 +96,27 @@ const TESTS = [
 		],
 	},
 	{
-		soundPath: "/sounds/LowHighTones2.mp3", solution: '32', what: "high tones", searchLetters: ['K'],
+		soundPath: "sounds/LowHighTones2.mp3", solution: 'I dont know', what: "high tones", searchLetters: ['K'],
+		lines: [
+			'T 🔻 🔳 H K A 🔶 Q',
+			'🔳 🔺 K G 🔻 🔵 M ⬛',
+			'K 🔶 A U J 🔵 K 🔻',
+			'🔺 Q M K 🔳 🔶 H K',
+			'J 🔵 🔶 🔻 K T G 🔳',
+			'K A ⚪ ⬛ H 🔺 Q K',
+			'M Q 🔳 K 🔻 🔺 🔵 T',
+			'K 🔶 A Q 🔻 🔳 J G',
+			'⬛ K 🔺 H 🔳 K M 🔻',
+			'🔵 K T Q J 🔶 🔺 K',
+			'A 🔻 M 🔶 K G Q 🔳',
+			'🔳 K J 🔵 T Q K 🔺',
+			'⬛ M K 🔻 H A K 🔶',
+			'Q 🔳 🔻 J T 🔺 M K',
+			'K ⚪ U 🔶 Q H 🔺 🔻',
+		],
+	},
+		{
+		soundPath: "sounds/textAboutDogs.mp3", solution: '32', what: "word dogs as mentioned", searchLetters: ['K'],
 		lines: [
 			'T 🔻 🔳 H K A 🔶 Q',
 			'🔳 🔺 K G 🔻 🔵 M ⬛',
@@ -173,6 +193,7 @@ export default {
 			}, 2000); // 1 second delay
 		},
 		goToTest(index) {
+			this.$router.push('/test2/')
 			this.$router.replace({ name: 'Test2Test', params: { index: index.toString() } });
 		}
 	}

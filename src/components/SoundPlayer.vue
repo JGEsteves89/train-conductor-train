@@ -43,7 +43,7 @@ export default {
 				this.audio.pause();
 				this.audio = null;
 			}
-			this.audio = new Audio(this.soundPath);
+			this.audio = new Audio(process.env.BASE_URL + this.soundPath);
 			this.audio.addEventListener('ended', () => {
 				this.isPlaying = false;
 				this.$emit('audio-ended');
@@ -62,6 +62,6 @@ export default {
 			this.audio.pause();
 			this.audio = null;
 		}
-	}
+	},
 };
 </script>

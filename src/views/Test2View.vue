@@ -10,6 +10,11 @@
 			are required to multi-task and listen to tones on an audio recording at the same time.
 			There are instructions before each test starts so you understand what you are being
 			asked to so. The test will take approximately 25 minutes to complete.</p>
+		<p>Isto é o que aparece no PDF mas depois o exemplo que dá é diferente. Os sons foram exemplos que encontrei na net eram sobre contar os tons altos e
+			baixos.</p>
+		<p>No outro teste, tens de encontrar e clicar nos "K"s.</p>
+		<p>Nota: não dá para saber se um tom é alto ou baixo sem comparar com outro. Por isso, tenta decorar os
+			primeiros sons e, a partir daí, vais decidindo se descartas ou não, consoante o que for. </p>
 		<v-btn block color="primary" class="mb-4" @click="$router.push('/test2/start/0')">
 			Start
 		</v-btn>
