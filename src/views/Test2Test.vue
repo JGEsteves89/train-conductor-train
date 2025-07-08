@@ -1,7 +1,8 @@
 <template>
 	<div>
 		<div class="text-center mb-2">
-			<h2>Please count the number of {{ currentTest.what }} and select all instances of {{ currentTest.searchLetters.join(', ') }}</h2>
+			<h2>Please count the number of {{ currentTest.what }} and select all instances of {{
+				currentTest.searchLetters.join(', ') }}</h2>
 		</div>
 		<SoundPlayer :soundPath="currentTest.soundPath" @audio-play="handleAudioPlay" @audio-ended="handleAudioEnded" />
 
@@ -12,7 +13,7 @@
 		</div>
 
 		<div v-if="listeningState !== 'not-listened'" class="text-center mb-2">
-			<TeaOccSymbolSearch v-if="currentTest"   ref="symbolSearch" :searchLetters="currentTest.searchLetters"
+			<TeaOccSymbolSearch v-if="currentTest" ref="symbolSearch" :searchLetters="currentTest.searchLetters"
 				:lines="currentTest.lines" />
 		</div>
 
@@ -115,7 +116,7 @@ const TESTS = [
 			'K ⚪ U 🔶 Q H 🔺 🔻',
 		],
 	},
-		{
+	{
 		soundPath: "sounds/textAboutDogs.mp3", solution: '32', what: "word dogs as mentioned", searchLetters: ['K'],
 		lines: [
 			'T 🔻 🔳 H K A 🔶 Q',
