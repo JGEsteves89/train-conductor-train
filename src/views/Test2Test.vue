@@ -162,7 +162,10 @@ export default {
 			return isNaN(idx) ? 0 : idx;
 		},
 		currentTest() {
-			if (this.testIndex < 0 || this.testIndex >= TESTS.length) return null;
+			if (this.testIndex < 0 || this.testIndex >= TESTS.length) {
+				this.$router.push("/test2/");
+				return null;
+			}
 			return TESTS[this.testIndex];
 		}
 	},
@@ -177,7 +180,8 @@ export default {
 	},
 	mounted() {
 		if (this.testIndex < 0 || this.testIndex >= TESTS.length) {
-			this.$router.push('/test2/')
+			this.$router.push('/test2/');
+			return;
 		}
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	},

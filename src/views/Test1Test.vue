@@ -184,6 +184,7 @@ export default {
 		},
 		currentTest() {
 			if (this.testIndex < 0 || this.testIndex >= TESTS.length) {
+				this.$router.push("/test1/");
 				return null;
 			}
 			return TESTS[this.testIndex];

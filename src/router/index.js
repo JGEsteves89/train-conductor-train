@@ -7,6 +7,7 @@ import Test1Test from "@/views/Test1Test.vue";
 import Test2View from "@/views/Test2View.vue";
 import Test2Test from "@/views/Test2Test.vue";
 import Test3View from "@/views/Test3View.vue";
+import Test3Test from "@/views/Test3Test.vue";
 
 Vue.use(Router);
 
@@ -16,12 +17,12 @@ export default new Router({
 	routes: [
 		{
 			path: "/",
-			name: "Home",
+			name: "HomeView",
 			component: HomeView,
 		},
 		{
 			path: "/test1",
-			name: "Test1",
+			name: "Test1View",
 			component: Test1View,
 		},
 		{
@@ -32,7 +33,7 @@ export default new Router({
 		},
 		{
 			path: "/test2",
-			name: "Test2",
+			name: "Test2View",
 			component: Test2View,
 		},
 		{
@@ -43,8 +44,14 @@ export default new Router({
 		},
 		{
 			path: "/test3",
-			name: "Test3",
+			name: "Test3View",
 			component: Test3View,
+		},
+		{
+			path: '/test3/start/:index?',
+			name: 'Test3Test',
+			component: Test3Test,
+			props: true
 		},
 	],
 });

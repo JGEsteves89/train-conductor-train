@@ -21,12 +21,11 @@
         </v-btn>
 
         <v-btn
-          v-show="false"
           block
           color="primary"
           @click="$router.push('/test3')"
         >
-          Test 3
+          MEMORY TESTS: TRP1b
         </v-btn>
       </v-col>
     </v-row>
