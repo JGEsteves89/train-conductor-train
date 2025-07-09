@@ -9,10 +9,10 @@
 		background-color:lightgray;"></span> then this panel should be checked
 		first. If the arrow on the panel has this background <span
 		style="display:inline-block; width:1em; height:1em;
-		background-color:gray;"></span> then it should be checked second. If the
+		background-color:black;"></span> then it should be checked second. If the
 		arrow on the panel has this background <span
 		style="display:inline-block; width:1em; height:1em;
-		background-color:black;"></span> then it should be checked last. You
+		background-color:gray;"></span> then it should be checked last. You
 		must then choose which of the multiple- choice answers; either A, B, C
 		or D matches the order that you think that the panels must be checked.
 		You put your answers on the practice TRP part 2 answer sheet by shading
