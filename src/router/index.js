@@ -8,7 +8,8 @@ import Test2View from "@/views/Test2View.vue";
 import Test2Test from "@/views/Test2Test.vue";
 import Test3View from "@/views/Test3View.vue";
 import Test3Test from "@/views/Test3Test.vue";
-
+import Test4View from "@/views/Test4View.vue";
+import Test4Test from "@/views/Test4Test.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -48,9 +49,20 @@ export default new Router({
 			component: Test3View,
 		},
 		{
-			path: '/test3/start/:index?',
-			name: 'Test3Test',
-			component: Test3Test,
+			path: '/test4/start/:index?',
+			name: 'Test4Test',
+			component: Test4Test,
+			props: true
+		},
+		{
+			path: "/test4",
+			name: "Test4View",
+			component: Test4View,
+		},
+		{
+			path: '/test4/start/:index?',
+			name: 'Test4Test',
+			component: Test4Test,
 			props: true
 		},
 	],
