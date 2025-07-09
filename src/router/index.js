@@ -49,9 +49,9 @@ export default new Router({
 			component: Test3View,
 		},
 		{
-			path: '/test4/start/:index?',
-			name: 'Test4Test',
-			component: Test4Test,
+			path: '/test3/start/:index?',
+			name: 'Test3Test',
+			component: Test3Test,
 			props: true
 		},
 		{
