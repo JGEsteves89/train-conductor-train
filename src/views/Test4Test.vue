@@ -34,6 +34,7 @@ import ColorSequenceCanvasTest from "@/components/ColorSequenceCanvasTest.vue";
 import MultipleAnswersQuestion from "@/components/MultipleAnswersQuestion.vue";
 
 export default {
+	name: "Test4Test",
 	components: {
 		ColorSequenceCanvasTest,
 		MultipleAnswersQuestion
@@ -84,10 +85,10 @@ export default {
 				const portions = Array.from({ length: 3 }, () =>
 					this.randomNormalizedArray(3)
 				);
-	
+
 				const allPossibleAnswers = ['LMR', 'LRM', 'RML', 'RLM', 'MRL', 'MLR'];
 				let correctAnswer = '';
-				for(const index of [0,1,2]){
+				for (const index of [0, 1, 2]) {
 					const indexInOrder = order.indexOf(index);
 					correctAnswer += 'LMR'[indexInOrder];
 				}

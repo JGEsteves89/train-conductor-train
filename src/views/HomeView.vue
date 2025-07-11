@@ -10,12 +10,16 @@
 					ATTENTION TESTS: TEA-Occ test
 				</v-btn>
 
-				<v-btn block color="primary" class="mb-4"  @click="$router.push('/test3')">
+				<v-btn block color="primary" class="mb-4" @click="$router.push('/test3')">
 					MEMORY TESTS: TRP1b
 				</v-btn>
 
-				<v-btn block color="primary" class="mb-4"  @click="$router.push('/test4')">
+				<v-btn block color="primary" class="mb-4" @click="$router.push('/test4')">
 					MEMORY TESTS: TRP2
+				</v-btn>
+				
+				<v-btn block color="primary" class="mb-4" @click="$router.push('/test5')">
+					COMPUTERISED TESTS: The WAFV vigilance test
 				</v-btn>
 			</v-col>
 		</v-row>

@@ -6,11 +6,10 @@
 </template>
 
 <script>
-import MultipleAnswersQuestion from './MultipleAnswersQuestion.vue';
+
 export default {
 	name: "ColorSequenceCanvasTest",
 	components: {
-		MultipleAnswersQuestion
 	},
 	props: {
 		canvasSize: {
