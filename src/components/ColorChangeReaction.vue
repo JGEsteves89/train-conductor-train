@@ -15,7 +15,7 @@
 			</v-card-text>
 
 		</v-card>
-		<v-btn block color="green" @click="handleClick" height="80" class="mt-4">
+		<v-btn block color="green" @click="handleClick" height="120" class="mt-4">
 
 		</v-btn>
 	</div>
