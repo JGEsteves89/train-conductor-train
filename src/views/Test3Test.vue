@@ -670,7 +670,7 @@ export default {
 		},
 		goToTest(index) {
 			this.resetTest(); // Reset everything before navigation
-			this.$router.push("/test2/");
+			this.$router.push("/test3/");
 			this.$router.replace({ name: "Test3Test", params: { index: index.toString() } });
 		},
 		setState(newState) {

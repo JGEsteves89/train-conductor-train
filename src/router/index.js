@@ -12,6 +12,8 @@ import Test4View from "@/views/Test4View.vue";
 import Test4Test from "@/views/Test4Test.vue";
 import Test5View from "@/views/Test5View.vue";
 import Test5Test from "@/views/Test5Test.vue";
+import Test6View from "@/views/Test6View.vue";
+import Test6Test from "@/views/Test6Test.vue";
 
 Vue.use(Router);
 
@@ -77,6 +79,17 @@ export default new Router({
 			path: '/test5/start/:index?',
 			name: 'Test5Test',
 			component: Test5Test,
+			props: true
+		},
+		{
+			path: "/test6",
+			name: "Test6View",
+			component: Test6View,
+		},
+		{
+			path: '/test6/start/:index?',
+			name: 'Test6Test',
+			component: Test6Test,
 			props: true
 		},
 	],

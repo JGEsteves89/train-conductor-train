@@ -17,9 +17,13 @@
 				<v-btn block color="primary" class="mb-4" @click="$router.push('/test4')">
 					MEMORY TESTS: TRP2
 				</v-btn>
-				
+
 				<v-btn block color="primary" class="mb-4" @click="$router.push('/test5')">
 					COMPUTERISED TESTS: The WAFV vigilance test
+				</v-btn>
+
+				<v-btn block color="primary" class="mb-4" @click="$router.push('/test6')">
+					COMPUTERISED TESTS: The ATAVT Perception Test
 				</v-btn>
 			</v-col>
 		</v-row>

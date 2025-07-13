@@ -191,7 +191,6 @@ export default {
 		},
 		handleAudioEnded() {
 			this.listeningState = 'listened';
-			console.log("Sound has ended!");
 			this.$refs.symbolSearch.finishTest();
 			setTimeout(() => {
 				this.showSolution = true;
