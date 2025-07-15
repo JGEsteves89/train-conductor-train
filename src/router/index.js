@@ -14,6 +14,8 @@ import Test5View from "@/views/Test5View.vue";
 import Test5Test from "@/views/Test5Test.vue";
 import Test6View from "@/views/Test6View.vue";
 import Test6Test from "@/views/Test6Test.vue";
+import Test7View from "@/views/Test7View.vue";
+import Test7Test from "@/views/Test7Test.vue";
 
 Vue.use(Router);
 
@@ -90,6 +92,17 @@ export default new Router({
 			path: '/test6/start/:index?',
 			name: 'Test6Test',
 			component: Test6Test,
+			props: true
+		},
+				{
+			path: "/test7",
+			name: "Test7View",
+			component: Test7View,
+		},
+		{
+			path: '/test7/start/:index?',
+			name: 'Test7Test',
+			component: Test7Test,
 			props: true
 		},
 	],

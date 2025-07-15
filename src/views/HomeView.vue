@@ -25,6 +25,10 @@
 				<v-btn block color="primary" class="mb-4" @click="$router.push('/test6')">
 					COMPUTERISED TESTS: The ATAVT Perception Test
 				</v-btn>
+
+				<v-btn block color="primary" class="mb-4" @click="$router.push('/test7')">
+					COMPUTERISED TESTS: The 2Hand Co-ordination Test
+				</v-btn>
 			</v-col>
 		</v-row>
 	</v-container>
