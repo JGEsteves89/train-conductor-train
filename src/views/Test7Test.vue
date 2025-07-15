@@ -1,6 +1,6 @@
 <template>
 	<v-container>
-		<div>Vector: {{ vector }}</div>
+		<div>Test: {{ testIndex + 1 }}</div>
 		<v-row justify="center" dense cols="4">
 			<TrackPath :path="currentPath" :input="vector" />
 		</v-row>
@@ -22,22 +22,105 @@
 import Joystick from "@/components/Joystick.vue";
 import TrackPath from "@/components/TrackPath.vue";
 
+const TESTS = [
+	[
+		{ c: 'move', x: 376 / 412, y: 72 / 282 },
+		{ c: 'line', x: 321 / 412, y: 250 / 282 },
+		{ c: 'line', x: 293 / 412, y: 86 / 282 },
+		{ c: 'line', x: 155 / 412, y: 86 / 282 },
+		{ c: 'line', x: 155 / 412, y: 235 / 282 },
+		{ c: 'arc', x: 89 / 412, y: 231 / 282, ex: 43 / 412, ey: 193 / 282 },
+		{ c: 'arc', x: 41 / 412, y: 128 / 282, ex: 82 / 412, ey: 74 / 282 },
+	],
+	[
+		{ c: 'move', x: 311 / 364, y: 198 / 230 },
+		{ c: 'arc', x: 339 / 364, y: 150 / 230, ex: 340 / 364, ey: 93 / 230 },
+		{ c: 'arc', x: 279 / 364, y: 32 / 230, ex: 247 / 364, ey: 26 / 230 },
+		{ c: 'line', x: 247 / 364, y: 192 / 230 },
+		{ c: 'line', x: 111 / 364, y: 192 / 230 },
+		{ c: 'line', x: 80 / 364, y: 30 / 230 },
+		{ c: 'line', x: 27 / 364, y: 192 / 230 },
+	],
+	[
+		{ c: 'move', x: 186 / 301, y: 39 / 264 },
+		{ c: 'arc', x: 275 / 301, y: 72 / 264, ex: 255 / 301, ey: 171 / 264 },
+		{ c: 'line', x: 201 / 301, y: 216 / 264 },
+		{ c: 'line', x: 112 / 301, y: 59 / 264 },
+		{ c: 'line', x: 20 / 301, y: 232 / 264 },
+		{ c: 'line', x: 20 / 301, y: 31 / 264 },
+	],
+	[
+		{ c: 'move', x: 277 / 314, y: 235 / 259 },
+		{ c: 'line', x: 277 / 314, y: 30 / 259 },
+		{ c: 'line', x: 188 / 314, y: 201 / 259 },
+		{ c: 'line', x: 100 / 314, y: 53 / 259 },
+		{ c: 'arc', x: 27 / 314, y: 184 / 259, ex: 114 / 314, ey: 223 / 259 }
+	],
+	[
+		{ c: 'move', x: 82 / 412, y: 74 / 282 },
+		{ c: 'arc', x: 41 / 412, y: 128 / 282, ex: 155 / 412, ey: 235 / 282 },
+		{ c: 'line', x: 155 / 412, y: 86 / 282 },
+		{ c: 'line', x: 293 / 412, y: 86 / 282 },
+		{ c: 'line', x: 321 / 412, y: 250 / 282 },
+		{ c: 'line', x: 376 / 412, y: 72 / 282 },
+	],
+	[
+		{ c: 'move', x: 27 / 364, y: 192 / 230 },
+		{ c: 'line', x: 80 / 364, y: 30 / 230 },
+		{ c: 'line', x: 111 / 364, y: 192 / 230 },
+		{ c: 'line', x: 247 / 364, y: 192 / 230 },
+		{ c: 'line', x: 247 / 364, y: 30 / 230 },
+		{ c: 'arc', x: 340 / 364, y: 93 / 230, ex: 311 / 364, ey: 198 / 230 },
+	],
+	[
+		{ c: 'move', x: 20 / 301, y: 31 / 264 },
+		{ c: 'line', x: 20 / 301, y: 232 / 264 },
+		{ c: 'line', x: 112 / 301, y: 59 / 264 },
+		{ c: 'line', x: 201 / 301, y: 216 / 264 },
+		{ c: 'line', x: 255 / 301, y: 171 / 264 },
+		{ c: 'arc', x: 275 / 301, y: 72 / 264, ex: 186 / 301, ey: 39 / 264 },
+	],
+	[
+		{ c: 'move', x: 114 / 314, y: 223 / 259 },
+		{ c: 'arc', x: 27 / 314, y: 184 / 259, ex: 100 / 314, ey: 53 / 259 },
+		{ c: 'line', x: 188 / 314, y: 201 / 259 },
+		{ c: 'line', x: 277 / 314, y: 30 / 259 },
+		{ c: 'line', x: 277 / 314, y: 235 / 259 },
+	],
+]
 export default {
 	name: "Test7Test",
 	components: { Joystick, TrackPath },
+	props: {
+		index: {
+			type: String,
+			default: '0',
+		}
+	},
 	data() {
 		return {
 			vector: { x: 0, y: 0 },
 		};
 	},
 	computed: {
-		currentPath() {
-			return [
-				{ x: 0.1, y: 0.5 },
-				{ x: 0.5, y: 0.5 },
-				{ x: 0.8, y: 0.2 }
-			]
+		testIndex() {
+			let idx = parseInt(this.index, 10);
+			return isNaN(idx) ? 0 : idx;
 		},
+		currentPath() {
+			if (this.testIndex < 0 || this.testIndex >= TESTS.length) {
+				this.$router.push("/test7/");
+				return null;
+			}
+			return TESTS[this.testIndex];
+		},
+	},
+	watch: {
+		testIndex(newIndex) {
+			if (newIndex < 0 || newIndex >= TESTS.length) {
+				this.$router.push("/test7/");
+			}
+		}
 	},
 	methods: {
 		onJoystickMoveVertically(vec) {
@@ -46,6 +129,10 @@ export default {
 		onJoystickMoveHorizontally(vec) {
 			this.vector.x = vec.x;
 		},
+		goToTest(index) {
+			this.$router.push('/test7/')
+			this.$router.replace({ name: 'Test7Test', params: { index: index.toString() } });
+		}
 	},
 };
 </script>

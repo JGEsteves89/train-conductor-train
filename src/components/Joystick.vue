@@ -46,11 +46,7 @@ export default {
 			this.active = false;
 			this.$emit('input', { x: 0, y: 0 });
 		},
-	},
-	mounted() {
-		console.log('mounted', this.delta)
-	},
-
+	}
 };
 </script>
 
