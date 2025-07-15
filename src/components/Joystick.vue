@@ -1,10 +1,7 @@
 <template>
-	<div class="joystick-container" @mousedown="onTouchStart" @mouseup="onTouchEnd" @mousemove="onTouchMove"
-		@touchstart="onTouchStart" @touchend="onTouchEnd" @touchmove="onTouchMove">
+	<div class="joystick-container" v-hammer:panstart="onStart" v-hammer:panend="onEnd" v-hammer:pan="onMove">
 		<svg class="joystick-visual" viewBox="0 0 120 120">
-			<!-- Outer stroke circle to show bounds -->
 			<circle cx="60" cy="60" :r="radius" stroke="#999" stroke-width="2" fill="none" />
-			<!-- Inner filled joystick -->
 			<circle :cx="60 + delta.x" :cy="60 + delta.y" r="20" fill="#1976D2" />
 		</svg>
 	</div>
@@ -22,27 +19,17 @@ export default {
 		};
 	},
 	methods: {
-		onTouchStart(e) {
-			if (this.active) return;
-
-			e.preventDefault();
-			const touch = e.changedTouches[0];
-			this.activeTouchId = touch.identifier;
+		onStart(e) {
 			this.active = true;
-			console.log('onTouchStart', this.delta);
 		},
-		onTouchMove(e) {
+		onMove(e) {
 			if (!this.active) return;
-			const touch = Array.from(e.changedTouches).find(t => t.identifier === this.activeTouchId);
-			if (!touch) return;
-
-
 			const rect = this.$el.getBoundingClientRect();
 			const centerX = rect.left + rect.width / 2;
 			const centerY = rect.top + rect.height / 2;
 
-			const dx = touch.clientX - centerX;
-			const dy = touch.clientY - centerY;
+			const dx = e.center.x - centerX;
+			const dy = e.center.y - centerY;
 
 			const clampedX = Math.max(-this.radius, Math.min(dx, this.radius));
 			const clampedY = Math.max(-this.radius, Math.min(dy, this.radius));
@@ -53,17 +40,11 @@ export default {
 				x: clampedX / this.radius,
 				y: clampedY / this.radius,
 			});
-			console.log('onTouchMove', this.delta)
 		},
-		onTouchEnd(e) {
-			const ended = Array.from(e.changedTouches).some(t => t.identifier === this.activeTouchId);
-			if (!ended) return;
-
+		onEnd() {
 			this.delta = { x: 0, y: 0 };
 			this.active = false;
-			this.activeTouchId = null;
 			this.$emit('input', { x: 0, y: 0 });
-			console.log('onTouchEnd', this.delta)
 		},
 	},
 	mounted() {
