@@ -1,5 +1,5 @@
 <template>
-	<canvas ref="canvas" class="track-canvas" />
+	<canvas ref="canvas" class="track-canvas" height="320px" />
 </template>
 
 <script>
@@ -58,7 +58,11 @@ export default {
 			update();
 		},
 		updatePosition() {
-			this.position.x += this.input.x * this.speed;
+			const canvas = this.$refs.canvas;
+			const w = canvas.width;
+			const h = canvas.height;
+
+			this.position.x += this.input.x * (h / w) * this.speed;
 			this.position.y += this.input.y * this.speed;
 
 			// Clamp to [0,1]
