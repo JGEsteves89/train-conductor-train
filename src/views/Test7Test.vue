@@ -1,7 +1,7 @@
 <template>
 	<v-container>
 		<div>Test: {{ testIndex + 1 }}</div>
-		<v-row justify="center" dense cols="4">
+		<v-row justify="center" dense cols="4" style="width: 100%; max-width: 800px; margin: 0 auto;">
 			<TrackPath :path="currentPath" :input="vector" />
 		</v-row>
 		<v-row justify="center" dense cols="4">
@@ -24,13 +24,13 @@ import TrackPath from "@/components/TrackPath.vue";
 
 const TESTS = [
 	[
-		{ c: 'move', x: 376 / 412, y: 72 / 282 },
-		{ c: 'line', x: 321 / 412, y: 250 / 282 },
-		{ c: 'line', x: 293 / 412, y: 86 / 282 },
-		{ c: 'line', x: 155 / 412, y: 86 / 282 },
-		{ c: 'line', x: 155 / 412, y: 235 / 282 },
-		{ c: 'arc', x: 89 / 412, y: 231 / 282, ex: 43 / 412, ey: 193 / 282 },
-		{ c: 'arc', x: 41 / 412, y: 128 / 282, ex: 82 / 412, ey: 74 / 282 },
+		{ c: 'move', x: 376 / 400, y: 72 / 282 },
+		{ c: 'line', x: 321 / 400, y: 250 / 282 },
+		{ c: 'line', x: 293 / 400, y: 86 / 282 },
+		{ c: 'line', x: 155 / 400, y: 86 / 282 },
+		{ c: 'line', x: 155 / 400, y: 235 / 282 },
+		{ c: 'arc', x: 89 / 400, y: 231 / 282, ex: 43 / 400, ey: 193 / 282 },
+		{ c: 'arc', x: 41 / 400, y: 128 / 282, ex: 82 / 400, ey: 74 / 282 },
 	],
 	[
 		{ c: 'move', x: 311 / 364, y: 198 / 230 },

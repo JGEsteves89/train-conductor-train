@@ -1,7 +1,17 @@
 <template>
-	<canvas ref="canvas" class="track-canvas" height="320px" />
+	<canvas ref="canvas" class="track-canvas" width="400" height="300" />
 </template>
-
+<style scoped>
+.track-canvas {
+	width: 100%;
+	/* Expand to fill container */
+	height: auto;
+	/* Maintain aspect ratio */
+	display: block;
+	image-rendering: pixelated;
+	/* Optional: keeps lines sharp when scaled */
+}
+</style>
 <script>
 
 export default {
@@ -45,9 +55,9 @@ export default {
 	},
 	methods: {
 		resizeCanvas() {
-			const canvas = this.$refs.canvas;
-			canvas.width = canvas.offsetWidth;
-			canvas.height = canvas.offsetHeight;
+			// const canvas = this.$refs.canvas;
+			// canvas.width = canvas.offsetWidth;
+			// canvas.height = canvas.offsetHeight;
 		},
 		startAnimation() {
 			const update = () => {
@@ -59,8 +69,8 @@ export default {
 		},
 		updatePosition() {
 			const canvas = this.$refs.canvas;
-			const w = canvas.width;
-			const h = canvas.height;
+			const w = 400;
+			const h = 300;
 
 			this.position.x += this.input.x * (h / w) * this.speed;
 			this.position.y += this.input.y * this.speed;
@@ -72,8 +82,8 @@ export default {
 		draw() {
 			const canvas = this.$refs.canvas;
 			const ctx = canvas.getContext('2d');
-			const w = canvas.width;
-			const h = canvas.height;
+			const w = 400;
+			const h = 300;
 
 			ctx.clearRect(0, 0, w, h);
 
@@ -129,7 +139,7 @@ export default {
 	}
 };
 
-function drawArcThroughThreePoints(ctx, p1, p2, p3) {
+function drawArcThroughThreePoints(ctx, p1, p2, p3, n = 0) {
 	// Helper to find the perpendicular bisector of two points
 	function perpendicularBisector(pA, pB) {
 		const mid = {
@@ -169,29 +179,34 @@ function drawArcThroughThreePoints(ctx, p1, p2, p3) {
 	const cross = (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x);
 	const anticlockwise = cross < 0;
 
-	ctx.arc(center.x, center.y, radius, angle1, angle3, anticlockwise);
+	if (n === 0) {
+		ctx.arc(center.x, center.y, radius, angle1, angle3, anticlockwise);
+	}
+	else {
+
+		let startAngle = angle1;
+		let endAngle = angle3;
+
+		// Normalize angles for consistent stepping
+		if (anticlockwise && endAngle > startAngle) {
+			endAngle -= 2 * Math.PI;
+		} else if (!anticlockwise && endAngle < startAngle) {
+			endAngle += 2 * Math.PI;
+		}
+
+		const points = [];
+		for (let i = 0; i <= n; i++) {
+			const t = i / n;
+			const angle = startAngle + (endAngle - startAngle) * t;
+			points.push({
+				x: center.x + radius * Math.cos(angle),
+				y: center.y + radius * Math.sin(angle)
+			});
+		}
+		return points;
+	}
 }
-function getArcRadius(p1, p2, p3) {
-	const { x: x1, y: y1 } = p1;
-	const { x: x2, y: y2 } = p2;
-	const { x: x3, y: y3 } = p3;
 
-	const a = Math.hypot(x2 - x1, y2 - y1);
-	const b = Math.hypot(x3 - x2, y3 - y2);
-	const c = Math.hypot(x1 - x3, y1 - y3);
-
-	const A = 0.5 * Math.abs(
-		x1 * (y2 - y3) +
-		x2 * (y3 - y1) +
-		x3 * (y1 - y2)
-	);
-
-	// If the area is too small (almost colinear), return a large radius
-	if (A < 1e-6) return 10000;
-
-	const radius = (a * b * c) / (4 * A);
-	return radius;
-}
 
 function distanceToSegment(p, v, w) {
 	// p = point, v = start, w = end
@@ -204,28 +219,6 @@ function distanceToSegment(p, v, w) {
 		y: v.y + t * (w.y - v.y)
 	};
 	return Math.hypot(p.x - proj.x, p.y - proj.y);
-}
-
-function getArcPoints(p1, p2, p3, steps = 20) {
-	const radius = getArcRadius(p1, p2, p3);
-	const path = new Path2D();
-	path.moveTo(p1.x, p1.y);
-	const dummyCanvas = document.createElement('canvas');
-	const ctx = dummyCanvas.getContext('2d');
-	ctx.beginPath();
-	ctx.moveTo(p1.x, p1.y);
-	ctx.arcTo(p2.x, p2.y, p3.x, p3.y, radius);
-	ctx.stroke();
-
-	// Get arc approximation using steps
-	const points = [];
-	for (let i = 0; i <= steps; i++) {
-		const t = i / steps;
-		const x = (1 - t) * (1 - t) * p1.x + 2 * (1 - t) * t * p2.x + t * t * p3.x;
-		const y = (1 - t) * (1 - t) * p1.y + 2 * (1 - t) * t * p2.y + t * t * p3.y;
-		points.push({ x, y });
-	}
-	return points;
 }
 
 function minDistanceToPath(pathCommands, point, width, height) {
@@ -249,7 +242,7 @@ function minDistanceToPath(pathCommands, point, width, height) {
 
 		else if (cmd.c === 'arc') {
 			const end = { x: cmd.ex * width, y: cmd.ey * height };
-			const arcPoints = getArcPoints(current, next, end, 20);
+			const arcPoints = drawArcThroughThreePoints(null, current, next, end, 20);
 
 			for (let i = 0; i < arcPoints.length - 1; i++) {
 				const dist = distanceToSegment(p, arcPoints[i], arcPoints[i + 1]);
