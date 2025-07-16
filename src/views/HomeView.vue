@@ -19,15 +19,19 @@
 				</v-btn>
 
 				<v-btn block color="primary" class="mb-4" @click="$router.push('/test5')">
-					COMPUTERISED TESTS: The WAFV vigilance test
+					PC TESTS: The WAFV vigilance test
 				</v-btn>
 
 				<v-btn block color="primary" class="mb-4" @click="$router.push('/test6')">
-					COMPUTERISED TESTS: The ATAVT Perception Test
+					PC TESTS: The ATAVT Perception Test
 				</v-btn>
 
 				<v-btn block color="primary" class="mb-4" @click="$router.push('/test7')">
-					COMPUTERISED TESTS: The 2Hand Co-ordination Test
+					PC TESTS: The 2Hand Co-ordination Test
+				</v-btn>
+
+				<v-btn block color="primary" class="mb-4" @click="$router.push('/test8')">
+					PC TESTS: Driver Fault Finding Test (DFFT)
 				</v-btn>
 			</v-col>
 		</v-row>
